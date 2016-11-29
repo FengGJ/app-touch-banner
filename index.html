@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/touch.js"></script>
+</head>
+<style>
+    .box{
+        width:1200px;
+        height:600px;
+        margin: 0 auto;position: relative;
+        overflow: hidden;
+    }
+    .box>div{
+        width:400%;
+    }
+    .box>div>div{
+        height:600px;
+        overflow: hidden;
+        float:left;
+    }
+    .box>div>div img{
+        width:1200px;
+        display: block;
+    }
+</style>
+<body>
+<div class="box">
+    <div>
+        <div><a href="javascript:;"><img src="img/1.jpg" alt=""></a></div>
+        <div><a href="javascript:;"><img src="img/2.jpg" alt=""></a></div>
+        <div><a href="javascript:;"><img src="img/3.jpg" alt=""></a></div>
+        <div><a href="javascript:;"><img src="img/4.jpg" alt=""></a></div>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        var width=parseInt($(".box").width());
+        var num=0;
+        var marginL;
+        touch.on("body", "drag", ".box>div", function (e) {
+            console.log(marginL)
+            $(".box>div").css("margin-left",(marginL+e.x)+"px");
+        })
+
+        touch.on("body","dragstart",".box>div",function(){
+            $(".box>div").css("transition","none");
+            marginL=parseInt($(".box>div").css("margin-left"))?parseInt($(".box>div").css("margin-left")):0
+        });
+
+        touch.on("body","dragend",".box>div",function (e) {
+
+
+            if(Math.abs(e.x)>200){
+                if(e.direction=="left"){
+                    num++;
+                    if(num>=$(".box>div>div").length){
+                        num=$(".box>div>div").length-1
+                    }
+                }else if(e.direction=="right"){
+                    num--;
+                    if(num<0){
+                        num=0;
+                    }
+                }
+                console.log(num)
+//                marginL=-width*num;
+                $(".box>div").css({"margin-left":(-width*num)+"px",transition:"margin 1s ease"});
+            }else{
+//                marginL=width*num;
+                console.log(num)
+                $(".box>div").css({"margin-left":(marginL)+"px",transition:"margin 1s ease"});
+            }
+
+        })
+    })
+</script>
+</html>
