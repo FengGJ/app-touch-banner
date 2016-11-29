@@ -24,18 +24,32 @@
         overflow: hidden;
         float:left;
     }
-    .box>div>div img{
+    .box>div>div a{
         width:1200px;
         display: block;
+        height:600px;
+
+    }
+    .box>div>div:nth-child(1) a{
+        background:url("img/1.jpg") no-repeat 0 0;
+    }
+    .box>div>div:nth-child(2) a{
+        background:url("img/2.jpg") no-repeat 0 0;
+    }
+    .box>div>div:nth-child(3) a{
+        background:url("img/3.jpg") no-repeat 0 0;
+    }
+    .box>div>div:nth-child(4) a{
+        background:url("img/4.jpg") no-repeat 0 0;
     }
 </style>
 <body>
 <div class="box">
     <div>
-        <div><a href="javascript:;"><img src="img/1.jpg" alt=""></a></div>
-        <div><a href="javascript:;"><img src="img/2.jpg" alt=""></a></div>
-        <div><a href="javascript:;"><img src="img/3.jpg" alt=""></a></div>
-        <div><a href="javascript:;"><img src="img/4.jpg" alt=""></a></div>
+        <div><a href="javascript:;"></a></div>
+        <div><a href="javascript:;"></a></div>
+        <div><a href="javascript:;"></a></div>
+        <div><a href="javascript:;"></a></div>
     </div>
 </div>
 </body>
@@ -75,7 +89,7 @@
             }else{
 //                marginL=width*num;
                 console.log(num)
-                $(".box>div").css({"margin-left":(marginL)+"px",transition:"margin 1s ease"});
+                $(".box>div").css({"margin-left":-(marginL)+"px",transition:"margin 1s ease"});
             }
 
         })
